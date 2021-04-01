@@ -11,29 +11,12 @@
 <style>
 html, body {
 	margin:0;
-	height:100%;
-}
-#wrap {
-	position: relative;
-    width: 100%;
-    height:100%;
-    min-width: 1200px;
-    margin: 0;
-    display:flex;
-    flex-direction:column;
 }
 
-#nav_bar.fixed {
-	visibility:visible;
-}
 #cnt_wrap {
 	position:absolute;
-	z-index:1;
-	top:0;
 	width:100%;
 }
-
-
 </style>
 <script>
 	$(document).ready(function() {
