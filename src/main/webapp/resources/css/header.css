@@ -59,7 +59,12 @@ a {
 }
 
 #top_bar .right a {
-	color:black;
+	color:#6f6f6f;
+}
+
+#top_bar .right a:hover {
+	color:orange;
+	cursor:pointer;
 }
 
 #logo_wrap {
@@ -92,7 +97,6 @@ a {
 
 #nav_wrap {
     position: absolute;
-    height: 60px;
     z-index: 10;
     width: 100%;
     box-shadow: 0 6px 10px -6px rgb(0 0 0 / 20%);
@@ -103,7 +107,7 @@ a {
 #nav_bar {
     text-align: center;
     width: 1200px;
-    height: auto;
+    height: 60px;
     margin: 0 auto;
 }
 
@@ -123,24 +127,20 @@ a {
 }
 
 #nav_bar li a {
-	color:#3a3a3a;
+	color:#6f6f6f;
 	font-weight:100;
 }
 
-#nav_bar li a:hover, #top_bar .right a:hover {
-	color:orange;
+#nav_bar li a:hover {
 	cursor:pointer;
+	border-bottom: 2px solid orange;
+	color:black;
 }
 
 #nav_all {
 	display: none;
     width: 1200px;
-    height: auto;
-    z-index: 999;
-    background: rgba(255,255,255,0.8);
-    position: fixed;
-    box-shadow: 0 6px 10px -6px rgb(0 0 0 / 20%);
-    margin-top: 60px;
+    margin: 0 auto;
 }
 
 #nav_all.show {
@@ -148,8 +148,16 @@ a {
 }
 
 #nav_all a {
-	color:silver;
+	color:#6f6f6f;
 	font-size:13px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight:100;
+	cursor:pointer;
+}
+
+#nav_all a:hover {
+	color:black;
+	border-bottom:1px solid orange;
 }
 
 #nav_all > div {
