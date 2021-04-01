@@ -124,7 +124,9 @@
 				</ul>
 			</div>
 			
-			<div id="nav_all">
+		</div><!-- #nav_bar end -->
+		
+		<div id="nav_all">
 				<div>
 					<ul>
 						<li><a>nav1-1</a></li>
@@ -158,9 +160,6 @@
 					</ul>
 				</div>
 			</div>
-			
-		</div><!-- #nav_bar end -->
-		
 
 	</div><!-- #nav_wrap end -->
 </div>
