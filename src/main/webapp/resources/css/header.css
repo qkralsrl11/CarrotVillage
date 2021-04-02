@@ -62,9 +62,15 @@ a {
 	color:#6f6f6f;
 }
 
-#top_bar .right a:hover {
+#top_bar .right a:nth-child(2):hover, #login_btn {
 	color:orange;
 	cursor:pointer;
+}
+
+#user_btn {
+	color:black;
+	cursor:pointer;
+	border-bottom:1px solid orange;
 }
 
 #logo_wrap {
