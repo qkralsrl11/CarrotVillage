@@ -21,12 +21,10 @@
 
 #foot_wrap > div > div:nth-child(1) span {
 	color: orange;
-	font-family: 'Noto Sans KR', sans-serif;
 }
 
 #foot_wrap p {
 	font-weight: 100;
-	font-family: 'Noto Sans KR', sans-serif;
 }
 #foot_wrap > div {
 	display:flex;

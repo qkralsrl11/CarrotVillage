@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-#top_wrap, #logo_wrap, #nav_wrap {
-	font-family: 'Noto Sans KR', sans-serif;
-}
-
 a {
 	text-decoration:none;
 }
@@ -156,7 +152,6 @@ a {
 #nav_all a {
 	color:#6f6f6f;
 	font-size:13px;
-	font-family: 'Noto Sans KR', sans-serif;
 	font-weight:100;
 	cursor:pointer;
 }
