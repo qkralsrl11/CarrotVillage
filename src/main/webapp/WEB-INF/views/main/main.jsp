@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/header.css?1" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script src = "http://code.jquery.com/jquery-latest.js"></script>
 <style>
 html, body {
@@ -20,6 +21,8 @@ html, body {
 </style>
 <script>
 	$(document).ready(function() {
+		
+		console.log("${email}");
 		
 		$("#header").mouseenter(function() {
 			var height = $(document).scrollTop();

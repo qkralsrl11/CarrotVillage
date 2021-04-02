@@ -6,8 +6,8 @@
 <title>로그인</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script src = "http://code.jquery.com/jquery-latest.js"></script>
 <style>
 body {
@@ -149,8 +149,25 @@ button {
 			</div>
 
 			<div id="login_other">
-				<button><img src="${pageContext.request.contextPath}/resources/image/Log in with NAVER_Icon_Green.PNG" width="30px">네이버 아이디로 로그인</button>
+			
+				<div id="naver_id_login">
+					<button><img src="${pageContext.request.contextPath}/resources/image/Log in with NAVER_Icon_Green.PNG" width="30px">네이버 아이디로 로그인</button>
+				</div>
+				<script type="text/javascript">
+					var naver_id_login = new naver_id_login("ac6ZedX0lErobHrFaU_k", "http://localhost:8088/carrotvillage/naverLoginProcess");	// Client ID, CallBack URL 삽입
+																															// 단 'localhost'가 포함된 CallBack URL
+					var state = naver_id_login.getUniqState();
+
+					naver_id_login.setButton("white", 2, 40);
+					naver_id_login.setDomain("http://localhost:8088/carrotvillage/login");	//  URL
+					naver_id_login.setState(state);
+					//naver_id_login.setPopup();
+					naver_id_login.init_naver_id_login();
+				</script>
+				
+				
 				<button><img src="${pageContext.request.contextPath}/resources/image/kakao_logo.png" width="30px" width="30px">카카오 아이디로 로그인</button>
+				
 			</div>
 
 		</div>
