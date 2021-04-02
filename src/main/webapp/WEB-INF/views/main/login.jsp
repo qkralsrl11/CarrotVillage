@@ -15,7 +15,7 @@ body {
 	margin:0;
 }
 form {
-	width:480px;
+	width:490px;
 	margin:0;
 }
 button {
@@ -25,6 +25,7 @@ button {
 	width:420px;
 	height:560px;
 	padding:30px;
+	margin:auto;
 }
 #login_header {
 	height:15%;
@@ -57,7 +58,6 @@ button {
 	margin:12px 0;
 }
 #login_content > div:nth-child(2) > label {
-	font-family: 'Roboto Condensed', sans-serif;
 	margin-left:7px;
 	color:#4a4a4a;
 }
@@ -73,7 +73,6 @@ button {
 	height:45px;
 	font-size:18px;
 	font-weight:400;
-	font-family: 'Roboto Condensed', sans-serif;
 }
 #login_content > div:nth-child(4) {
 	width:100%;
@@ -82,7 +81,6 @@ button {
 }
 #login_content > div:nth-child(4) a {
 	font-size:13px;
-	font-family: 'Roboto Condensed', sans-serif;
 	text-decoration:none;
 	color:silver;
 }
@@ -91,7 +89,6 @@ button {
 }
 #login_content input::placeholder {
 	color:silver;
-	font-family: 'Roboto Condensed', sans-serif;
 	font-weight:400;
 	letter-spacing:1px;
 }
@@ -107,7 +104,6 @@ button {
 	border:1px #a7a7a7 solid;
 	height:45px;
 	font-size:18px;
-	font-family: 'Roboto Condensed', sans-serif;
 	margin:3px 0;
 	text-align:center;
 	color:#505050;
@@ -115,6 +111,29 @@ button {
 }
 #login_other button > img {
 	float:left;
+}
+#naver_id_login img {
+	display:none;
+}
+#naver_id_login {
+	height: 40px;
+	width:100%;
+	margin-bottom:5px;
+}
+
+#naver_id_login_anchor {
+	z-index:-1;
+	border: solid 1px #505050;
+	background:white;
+    display: block;
+    width:360px;
+   	height: 40px;
+    border-radius: 3px;
+    text-decoration:none;
+    text-align:center;
+}
+#naver_id_login_anchor:hover {
+	cursor:pointer;
 }
 </style>
 </head>
@@ -152,18 +171,22 @@ button {
 			<div id="login_other">
 			
 				<div id="naver_id_login">
-					<button><img src="${pageContext.request.contextPath}/resources/image/Log in with NAVER_Icon_Green.PNG" width="30px">네이버 아이디로 로그인</button>
+					
 				</div>
 				<script type="text/javascript">
 					var naver_id_login = new naver_id_login("ac6ZedX0lErobHrFaU_k", "http://localhost:8088/carrotvillage/naverLoginProcess");	// Client ID, CallBack URL 삽입
 																															// 단 'localhost'가 포함된 CallBack URL
 					var state = naver_id_login.getUniqState();
 
-					naver_id_login.setButton("white", 2, 40);
+					naver_id_login.setButton("green", 3, 40);
 					naver_id_login.setDomain("http://localhost:8088/carrotvillage/login");	//  URL
 					naver_id_login.setState(state);
 					//naver_id_login.setPopup();
 					naver_id_login.init_naver_id_login();
+					
+					$(function() {
+						$("#naver_id_login_anchor").text("네이버 아이디로 로그인");
+					});
 				</script>
 				
 				

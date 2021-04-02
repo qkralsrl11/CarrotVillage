@@ -9,33 +9,20 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>t.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
 
 html, body {
 	margin:0;
+	height:100%;
 }
 #wrap {
+	height:100%;
 	width: 100%;
-    margin: 0;
-}
-#content_wrap {
-	position: absolute;
-    top: 176px;
-    height: auto;
-    width: 100%;
-    display:flex;
-    flex-direction:column;
+    display:grid;
+    grid-template-rows: 175px auto 150px;
 }
 
-content100 {
-	width:100%;
-}
-
-#content {
-	width: 1200px;
-    margin: 0 auto;
-}
 /*------------- 여기까지 고정 css 속성 -------------*/
 
 </style>
@@ -43,28 +30,14 @@ content100 {
 <body>
 <div id="wrap">
 
-	<jsp:include page="header.jsp"/>
+	<jsp:include page = "/WEB-INF/views/main/header.jsp" />
 
 	<div id="content_wrap">
-		
-		<div id="content100"> <!-- 콘텐츠의 width를 100%로 하고 싶은 경우 여기안에 넣어주세요 -->
-			
-			<div style="width:100%;height:1000px;background:pink"></div> <!-- test용 div -->
-			
-		</div>
-		
-		
-		
-		<div id="content"> <!-- 콘텐츠의 width를 1200px로 제한하고 싶은 경우 여기안에 넣어주세요 -->
-		
-			<div style="width:100%;height:1000px;background:silver"></div> <!-- test용 div -->
-			
-		</div>
-		
-		<jsp:include page="footer.jsp"/>
 	
 	</div>
 
+	<jsp:include page = "/WEB-INF/views/main/footer.jsp" />
+	
 </div>
 </body>
 </html>
