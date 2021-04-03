@@ -57,9 +57,15 @@ button {
 #login_content > div:nth-child(2) {
 	margin:12px 0;
 }
+#stay_signed_in {
+	width:15px;
+	height:15px;
+	margin-bottom: 3px;
+}
 #login_content > div:nth-child(2) > label {
 	margin-left:7px;
 	color:#4a4a4a;
+	font-size:14px;
 }
 #login_content > div:nth-child(3) {
 	margin:20px 0;
@@ -85,7 +91,8 @@ button {
 	color:silver;
 }
 #login_content > div:nth-child(4) a:hover {
-	color:orange;
+	color:black;
+	text-decoration:underline;
 }
 #login_content input::placeholder {
 	color:silver;
@@ -112,28 +119,38 @@ button {
 #login_other button > img {
 	float:left;
 }
-#naver_id_login img {
+#naver_id_login img:nth-child(2) {
 	display:none;
 }
 #naver_id_login {
-	height: 40px;
+	height: 42px;
 	width:100%;
 	margin-bottom:5px;
 }
 
 #naver_id_login_anchor {
-	z-index:-1;
-	border: solid 1px #505050;
+	border: solid 1px #a0a0a0;
 	background:white;
-    display: block;
+    display: flex;
+    flex-direction:row;
     width:360px;
    	height: 40px;
     border-radius: 3px;
-    text-decoration:none;
-    text-align:center;
 }
 #naver_id_login_anchor:hover {
 	cursor:pointer;
+	text-decoration:none;
+}
+#naver_id_login_anchor p {
+	font-size:18px;
+	margin: 5px 45px;
+	color:#505050;
+}
+#naver_logo {
+	display:block;
+	width:30px;
+	height:30px;
+	margin:5px;
 }
 </style>
 </head>
@@ -149,22 +166,20 @@ button {
 			<div id="login_content">
 				<div><!-- 1 -->
 					<div>
-						<input type="text" placeholder="아이디" name="id">
-						<div></div>
+						<input type="text" placeholder="이메일" name="email">
 					</div>
 					<div>
 						<input type="password" placeholder="비밀번호" name="password">
-						<div></div>
 					</div>
 				</div>
 				<div><!-- 2 -->
-					<input type="checkbox" id="id_remember" name="id_remember"><label for="id_remember">아이디 저장</label>
+					<label for="stay_signed_in">로그인 상태 유지</label>
 				</div>
 				<div><!-- 3 -->
 					<button type="submit">로그인</button>
 				</div>
 				<div><!-- 4 -->
-					<a id="join_btn">회원가입</a> <a href="">아이디/비밀번호 찾기</a>
+					<a id="join_terms" href="${pageContext.request.contextPath}/main/joinTerms">회원가입</a> <a href="">아이디/비밀번호 찾기</a>
 				</div>
 			</div>
 
@@ -174,18 +189,19 @@ button {
 					
 				</div>
 				<script type="text/javascript">
-					var naver_id_login = new naver_id_login("ac6ZedX0lErobHrFaU_k", "http://localhost:8088/carrotvillage/naverLoginProcess");	// Client ID, CallBack URL 삽입
+					var naver_id_login = new naver_id_login("ac6ZedX0lErobHrFaU_k", "http://localhost:8088/myhome/main/naverLoginProcess");	// Client ID, CallBack URL 삽입
 																															// 단 'localhost'가 포함된 CallBack URL
 					var state = naver_id_login.getUniqState();
 
 					naver_id_login.setButton("green", 3, 40);
-					naver_id_login.setDomain("http://localhost:8088/carrotvillage/login");	//  URL
+					naver_id_login.setDomain("http://localhost:8088/myhome/main/login");	//  URL
 					naver_id_login.setState(state);
 					//naver_id_login.setPopup();
 					naver_id_login.init_naver_id_login();
 					
 					$(function() {
-						$("#naver_id_login_anchor").text("네이버 아이디로 로그인");
+						$("#naver_id_login_anchor").html("<img src='${pageContext.request.contextPath}/resources/image/Log in with NAVER_Icon_Green.PNG' id='naver_logo'>"
+														+"<p>네이버 아이디로 로그인</p>");
 					});
 				</script>
 				

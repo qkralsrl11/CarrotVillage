@@ -122,7 +122,7 @@ html, body {
 	<div id="cnt_wrap">
 	
 		<div class="content">
-			<div class="cnt01" style="background-color:skyblue;height:100%;"></div>
+			<div class="cnt01" style="background-color:skyblue;height:100%;background:url(https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdAQdT9%2FbtqA6pSGU0J%2FyQXubF3i4kkiStb0zfM580%2Fimg.jpg) no-repeat"></div>
     		<div class="cnt02" style="background-color:silver;height:100%;"></div>
     		<div class="cnt03" style="background-color:yellow;height:100%;"></div>
     		<div class="cnt04" style="background-color:green;height:100%;"></div>

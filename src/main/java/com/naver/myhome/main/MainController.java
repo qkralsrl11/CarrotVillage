@@ -11,32 +11,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping(value="main")
 public class MainController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
-	@RequestMapping(value="/main")
-	public String main(Model m) {
+	@RequestMapping(value="mainPage")
+	public String main() {
 		return "main/main";
 	}
 	
-	@RequestMapping(value="/template")
-	public String navi1(Model m) {
-		return "main/template";
-	}
-	
-	@RequestMapping(value="/login")
-	public String login(Model m) {
+	@RequestMapping(value="login")
+	public String login() {
 		return "main/login";
 	}
 	
-	@RequestMapping(value="/naverLoginProcess")
-	public String naverLoginProcess(Model m) {
+	@RequestMapping(value="naverLoginProcess")
+	public String naverLoginProcess() {
 		return "main/naverLoginProcess";
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/loginProcess")
+	@RequestMapping(value="loginProcess")
 	public String NaverLoginProcess(HttpSession session,
 									@RequestParam(value = "email", required = false) String email,
 									@RequestParam(value = "name", required = false) String name,
@@ -46,7 +42,17 @@ public class MainController {
 		session.setAttribute("user_email", email);
 		session.setAttribute("user_name", name);
 		session.setAttribute("user_profile_image", profile_image);
-		return message;
+		return "redirect:main/main";
+	}
+	
+	@RequestMapping(value="joinTerms")
+	public String joinTerms() {
+		return "main/join_terms";
+	}
+	
+	@RequestMapping(value="join")
+	public String join() {
+		return "main/join";
 	}
 	
 }
