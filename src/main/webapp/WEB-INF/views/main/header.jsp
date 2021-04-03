@@ -50,7 +50,7 @@
 			xPos += window.screenLeft;	 //듀얼 모니터
 			var yPos = (screen.availHeight / 2) - (nHeight / 2);
 
-			window.open("login","login/join_pop","width="+nWidth+",height="+nHeight+", left="+xPos+", top="+yPos+", toolbars=no, resizable=yes, scrollbars=no");
+			window.open("${pageContext.request.contextPath}/main/login","login/join_pop","width="+nWidth+",height="+nHeight+", left="+xPos+", top="+yPos+", toolbars=no, resizable=yes, scrollbars=no");
 		});
 		
 		$("#msg_btn").click(function() {
@@ -104,7 +104,7 @@
 
 	<div id="logo_wrap">
 		<div id="logo_bar">
-			<a href="main">당근빌리지</a>
+			<a href="${pageContext.request.contextPath}/main/mainPage">당근빌리지</a>
 		</div>
 	</div>
 
@@ -123,7 +123,7 @@
 
 			<div id="nav_lst">
 				<ul>
-					<li><a href="template">navi1</a></li>
+					<li><a href="${pageContext.request.contextPath}/market/list">중고마켓</a></li>
 					<li><a href="#">navi2</a></li>
 					<li><a href="#">navi3</a></li>
 					<li><a href="#">navi4</a></li>

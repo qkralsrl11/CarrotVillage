@@ -22,6 +22,10 @@ html, body {
     display:grid;
     grid-template-rows: 175px auto 150px;
 }
+#content_wrap {
+	width:1200px;
+	margin:0 auto;
+}
 
 /*------------- 여기까지 고정 css 속성 -------------*/
 
