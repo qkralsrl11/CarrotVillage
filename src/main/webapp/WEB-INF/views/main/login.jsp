@@ -56,17 +56,14 @@ button {
 }
 #login_content > div:nth-child(2) {
 	margin:12px 0;
+	height: 40px;
 }
 #stay_signed_in {
 	width:15px;
 	height:15px;
 	margin-bottom: 3px;
 }
-#login_content > div:nth-child(2) > label {
-	margin-left:7px;
-	color:#4a4a4a;
-	font-size:14px;
-}
+
 #login_content > div:nth-child(3) {
 	margin:20px 0;
 }
@@ -79,6 +76,9 @@ button {
 	height:45px;
 	font-size:18px;
 	font-weight:400;
+}
+#login_content > div:nth-child(3) > button:focus {
+	outline:none;
 }
 #login_content > div:nth-child(4) {
 	width:100%;
@@ -152,6 +152,37 @@ button {
 	height:30px;
 	margin:5px;
 }
+input[type="checkbox"] {
+	display: none;
+}
+
+input[type="checkbox"]+label {
+	display: inline-block;
+	width: 100%;
+	font-size: 13px;
+	cursor: pointer;
+	height: 20px;
+	margin: 0 0 0 7px;
+    color: #4a4a4a;
+}
+
+input[type="checkbox"]+label span {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	margin: 1px 10px 3px 0;
+	vertical-align: middle;
+	background:url(${pageContext.request.contextPath}/resources/image/nhj_unchecked.png) no-repeat;
+	background-size:18px 18px;
+	cursor: pointer;
+	border:none;
+}
+
+input[type="checkbox"]:checked+label span {
+	background:url(${pageContext.request.contextPath}/resources/image/nhj_checked.png) no-repeat;
+	border: none;
+	background-size:18px 18px;
+}
 </style>
 </head>
 <body>
@@ -173,7 +204,8 @@ button {
 					</div>
 				</div>
 				<div><!-- 2 -->
-					<label for="stay_signed_in">로그인 상태 유지</label>
+					<input type="checkbox" id="login_chk" name="login_chk">
+					<label for="login_chk"><span></span>로그인 유지하기  </label>
 				</div>
 				<div><!-- 3 -->
 					<button type="submit">로그인</button>
@@ -200,13 +232,13 @@ button {
 					naver_id_login.init_naver_id_login();
 					
 					$(function() {
-						$("#naver_id_login_anchor").html("<img src='${pageContext.request.contextPath}/resources/image/Log in with NAVER_Icon_Green.PNG' id='naver_logo'>"
+						$("#naver_id_login_anchor").html("<img src='${pageContext.request.contextPath}/resources/image/nhj_naver_logo.PNG' id='naver_logo'>"
 														+"<p>네이버 아이디로 로그인</p>");
 					});
 				</script>
 				
 				
-				<button><img src="${pageContext.request.contextPath}/resources/image/kakao_logo.png" width="30px" width="30px">카카오 아이디로 로그인</button>
+				<button><img src="${pageContext.request.contextPath}/resources/image/nhj_kakao_logo.png" width="30px" width="30px">카카오 아이디로 로그인</button>
 				
 			</div>
 
