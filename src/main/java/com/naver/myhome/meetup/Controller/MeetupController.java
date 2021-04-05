@@ -11,6 +11,10 @@ public class MeetupController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MeetupController.class);
 
-	
+	@RequestMapping(value = "/list")
+	public String landing() {
+		logger.info("landing()");
+		return "/meetup/meetup_list";
+	}
 
 }

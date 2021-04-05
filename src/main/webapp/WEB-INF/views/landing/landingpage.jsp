@@ -15,12 +15,13 @@
 	html,body {
 		margin:0;
 		height:100%;
-		background: #edf9e3; 
+		width : 100%;
+		background: #f6fcf1; 
 	}
 	.container {
 		width: 100%;
 		height:100%;
-		background: #edf9e3; 
+		background: #f6fcf1; 
 		display: grid;
 	}
 	.card-title {
@@ -52,7 +53,7 @@
 	}
 	.card img-fluid {
 	   margin: auto;
-	   background: #edf9e3;
+	   background: #f6fcf1;
 	   border: none;
 	}
 	.card-img-top{
@@ -60,8 +61,8 @@
         min-height: 100%;
 		height : auto;
 		margin: auto;
-	    background: #edf9e3;
-	    opacity: 0.4;
+	    background: #f6fcf1;
+	    opacity: 0.2;
 	}
 	.card-img-overlay {
 		display : grid;
@@ -168,7 +169,7 @@
 			vertical-align : center;
 	  }
     
-    /*가로아이템을 세로로 어떻게 정렬...? + 가로스크롤(픽셀때문인듯)*/
+   /*  
      @media only screen and (max-width: 781px) {
     	.card-img-overlay {
 			margin-left : -200px; 
@@ -176,8 +177,9 @@
 			vertical-align : center;
 	  }
 		.icons, .buttons {  
-		grid-auto-flow : row; /*안먹힘..*/
-	 } 
+		grid-auto-flow : row;
+	 }  
+	 */
    
 
 </style> 
@@ -197,8 +199,8 @@
 		  </div>
 		  <div class="buttons">
 		      <a href="/market/list" class="ghost-button" id="market">중고마켓</a>
-		      <a href="#" class="ghost-button" id="meetup">우리동네 소모임</a>
-		      <a href="#" class="ghost-button" id="sub">동네 온라인마켓</a>
+		      <a href="/meetup/list" class="ghost-button" id="meetup">우리동네 소모임</a>
+		      <a href="sub/submarket" class="ghost-button" id="sub">동네 온라인마켓</a>
 	     </div>
       </div>	  
    </div>
