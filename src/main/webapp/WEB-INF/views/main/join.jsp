@@ -191,9 +191,24 @@ $(function() {
 				$("#name_msg").prev().css('border-color', 'red');
 				checkName = false;
 			} else {
-				$("#name_msg").prev().css('border-color', 'silver');
-				$("#name_msg").empty();
-				checkName = true;
+				
+				$.ajax({
+					type : "get",
+					url : "${pageContext.request.contextPath}/main/joinCheck",
+					data : { "field" : "name", "value" : name },
+					success : function(rdata) {
+						if(rdata.result == '-1') {
+							$("#name_msg").prev().css('border-color', 'silver');
+							$("#name_msg").empty();
+							checkName = true;
+						} else {
+							$("#name_msg").prev().css('border-color', 'red');
+							$("#name_msg").css('color', 'red').html("사용중인 아이디 입니다.");
+							checkName = false;
+						}
+					}
+				});
+				
 			}
 			
 		}
@@ -221,21 +236,6 @@ $(function() {
 		}
 		$("#name_count").text(length + "/15");
 
-		$.ajax({
-			type : "get",
-			url : "${pageContext.request.contextPath}/main/joinCheck",
-			data : { "field" : "name", "value" : name },
-			success : function(rdata) {
-				if(rdata.result == '-1') {
-					$("#name_msg").prev().css('border-color', 'silver');
-					checkid = true;
-				} else {
-					$("#name_msg").prev().css('border-color', 'red');
-					$("#name_msg").css('color', 'red').html("사용중인 아이디 입니다.");
-					checkid = false;
-				}
-			}
-		});
 		
 		
 	});
@@ -262,7 +262,24 @@ $(function() {
 		} else {
 			$("#email_msg").prev().css('border-color', 'silver');
 			$("#email_msg").empty();
-			checkEmail = true;
+			
+			$.ajax({
+				type : "get",
+				url : "${pageContext.request.contextPath}/main/joinCheck",
+				data : { "field" : "email", "value" : email },
+				success : function(rdata) {
+					if(rdata.result == '-1') {
+						$("#email_msg").prev().css('border-color', 'silver');
+						$("#email_msg").empty();
+						checkEmail = true;
+					} else {
+						$("#email_msg").prev().css('border-color', 'red');
+						$("#email_msg").css('color', 'red').html("사용중인 이메일 입니다.");
+						checkEmail = false;
+					}
+				}
+			});
+			
 		}
 		if (!email) {
 			$("#email_msg").prev().css('border-color', 'silver');
@@ -273,21 +290,7 @@ $(function() {
 			$("#emailx").css("visibility", "visible");
 		}
 		
-		$.ajax({
-			type : "get",
-			url : "${pageContext.request.contextPath}/main/joinCheck",
-			data : { "field" : "email", "value" : email },
-			success : function(rdata) {
-				if(rdata.result == '-1') {
-					$("#email_msg").prev().css('border-color', 'silver');
-					checkid = true;
-				} else {
-					$("#email_msg").prev().css('border-color', 'red');
-					$("#email_msg").css('color', 'red').html("사용중인 이메일 입니다.");
-					checkid = false;
-				}
-			}
-		});
+		
 		
 	});
 	
