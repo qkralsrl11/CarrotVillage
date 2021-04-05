@@ -11,7 +11,7 @@ public class UsedItemService {
 	@Autowired
 	private UsedItemDAO dao;
 	
-	public void insert(UsedItem usedItem) {
-		dao.insert(usedItem);
+	public int insert(UsedItem usedItem) {
+		return dao.insert(usedItem);
 	}
 }

@@ -1,18 +1,9 @@
 package com.naver.myhome.market.domain;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class UsedItem {
 	private int num, price;
 	private String id, subject, content, register_date, location, sold, image;
-	private MultipartFile uploadfile;
 
-	public MultipartFile getUploadfile() {
-		return uploadfile;
-	}
-	public void setUploadfile(MultipartFile uploadfile) {
-		this.uploadfile = uploadfile;
-	}
 	public int getNum() {
 		return num;
 	}

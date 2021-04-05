@@ -11,7 +11,7 @@ public class UsedItemDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public void insert(UsedItem usedItem) {
-		sqlSession.insert("UsedItem.insert", usedItem);
+	public int insert(UsedItem usedItem) {
+		return sqlSession.insert("UsedItem.insert", usedItem);
 	}
 }
