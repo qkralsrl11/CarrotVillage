@@ -95,11 +95,11 @@ textarea:focus {
 	outline: orange .1em solid;
 }
 button {
-	background:orange;
+	background:silver;
 	color:white;
 	width:100%;
+	border:none;
 	border-radius:3px;
-	border:1px orange solid;
 	height:45px;
 	font-size:18px;
 	font-weight:400;
@@ -121,14 +121,12 @@ button:focus {
 			if ($(this).prop("checked")) {
 				$(".chk").prop("checked", true);
 				check = true;
+				$("button").css("background", "orange");
 			} else { 
 				$(".chk").prop("checked", false);
 				check = false;
+				$("button").css("background", "silver");
 			}
-			
-			console.log($("#chk_all").prop("checked") 
-				+ " " + $("#chk1").prop("checked")
-				+ " " + $("#chk2").prop("checked"));
 			
 		});
 		$(".chk").change(function() {
@@ -136,14 +134,12 @@ button:focus {
 			if ($("#chk1").prop("checked") === true && $("#chk2").prop("checked") === true) {
 				$("#chk_all").prop("checked", true);
 				check = true;
+				$("button").css("background", "orange");
 			} else {
 				$("#chk_all").prop("checked", false);
 				check = false;
+				$("button").css("background", "silver");
 			}
-			
-			console.log($("#chk_all").prop("checked") 
-				+ " " + $("#chk1").prop("checked") 
-				+ " " + $("#chk2").prop("checked"));
 			
 		});
 		

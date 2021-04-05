@@ -67,7 +67,7 @@ button {
 #login_content > div:nth-child(3) {
 	margin:20px 0;
 }
-#login_content > div:nth-child(3) > button {
+#login_btn {
 	background:orange;
 	color:white;
 	width:100%;
@@ -184,9 +184,22 @@ input[type="checkbox"]:checked+label span {
 	background-size:18px 18px;
 }
 </style>
+<script>
+var result = "${result}";
+if (result == 'joinSuccess') {
+	alert('회원가입을 축하합니다.');
+} else if (result == '0') {
+	alert('비밀번호가 일치하지 않습니다.');
+} else if (result == '-1') {
+	alert('아이디가 존재하지 않습니다.');
+} else if (result == '1') {
+	window.opener.location.reload();
+	window.close();
+}
+</script>
 </head>
 <body>
-	<form action="" method="post">
+	<form method="post" action="loginProcess">
 		<div id="login_wrap">
 
 			<div id="login_header">
@@ -197,10 +210,10 @@ input[type="checkbox"]:checked+label span {
 			<div id="login_content">
 				<div><!-- 1 -->
 					<div>
-						<input type="text" placeholder="이메일" name="email">
+						<input type="text" placeholder="이메일" name="email" required>
 					</div>
 					<div>
-						<input type="password" placeholder="비밀번호" name="password">
+						<input type="password" placeholder="비밀번호" name="password" required>
 					</div>
 				</div>
 				<div><!-- 2 -->
@@ -208,7 +221,7 @@ input[type="checkbox"]:checked+label span {
 					<label for="login_chk"><span></span>로그인 유지하기  </label>
 				</div>
 				<div><!-- 3 -->
-					<button type="submit">로그인</button>
+					<button id="login_btn">로그인</button>
 				</div>
 				<div><!-- 4 -->
 					<a id="join_terms" href="${pageContext.request.contextPath}/main/joinTerms">회원가입</a> <a href="">아이디/비밀번호 찾기</a>
@@ -221,7 +234,7 @@ input[type="checkbox"]:checked+label span {
 					
 				</div>
 				<script type="text/javascript">
-					var naver_id_login = new naver_id_login("ac6ZedX0lErobHrFaU_k", "http://localhost:8088/myhome/main/naverLoginProcess");	// Client ID, CallBack URL 삽입
+					var naver_id_login = new naver_id_login("ac6ZedX0lErobHrFaU_k", "http://localhost:8088/myhome/main/naverLogin");	// Client ID, CallBack URL 삽입
 																															// 단 'localhost'가 포함된 CallBack URL
 					var state = naver_id_login.getUniqState();
 
@@ -243,6 +256,7 @@ input[type="checkbox"]:checked+label span {
 			</div>
 
 		</div>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	</form>
 </body>
 </html>

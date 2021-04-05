@@ -63,18 +63,22 @@
 			}
 		});
 		
-		//임시 로그아웃
+		
 		$("#user_btn").click(function() {
-			$.ajax({
-				url : "${pageContext.request.contextPath}/main/logout",
-				success : function(rdata) {
-					alert(rdata.logout_name + "님 로그아웃 되었습니다.");
-					window.location.reload()
-				}
-			});
+			$("#user_info_tab").toggleClass("show")
 		});
 		
 	});
+	
+	function logout() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/main/logout",
+			success : function(rdata) {
+				alert("로그아웃 되었습니다.");
+				window.location.reload()
+			}
+		});
+	}
 </script>
 
 <a id="top_btn"> 
@@ -93,20 +97,47 @@
 
 			<div class="left">
 				<img src="${pageContext.request.contextPath}/resources/image/nhj_pin2.png">
+				<span></span>
 			</div>
 
 			<div class="right">
 				<ul>
+				
+					<li style="margin-right:10px;"><a href="#">고객센터</a></li>
 					
-					<c:if test="${empty user_name}">				
+					<c:if test="${empty user_info && empty naver_name}">				
 						<li><a id="login_btn">로그인</a></li>
 					</c:if>
-					<c:if test="${!empty user_name}">				
-						<li><a id="user_btn">${user_name} 님</a></li>
+					<c:if test="${!empty user_info}">				
+						<li><a id="user_btn">${user_info.name} 님</a></li>
+					</c:if>
+					<c:if test="${!empty naver_name}">				
+						<li><a id="user_btn">${naver_name} 님</a></li>
 					</c:if>
 
-					<li><a href="#">고객센터</a></li>
 				</ul>
+				
+				<div id="user_info_tab">
+					<div style=" width: 35%;height: 100%;">
+						<div id="user_profile_img"></div>
+					</div>
+    				<div style="width: 65%;height: 100%;">
+    				
+    					<div id="user_title">
+    					
+    						<c:if test="${!empty user_info}">				
+								<b>${user_info.name}</b>님&nbsp;&nbsp;&nbsp;
+							</c:if>
+							<c:if test="${!empty naver_name}">				
+								<b>${naver_name}</b>님&nbsp;&nbsp;&nbsp;
+							</c:if>
+							
+    						<a onclick="logout()" style="cursor:pointer;">로그아웃</a>
+    					</div>
+    					
+    				</div>
+				</div><!-- #user_info_tab end -->
+				
 			</div>
 
 		</div>
@@ -136,7 +167,7 @@
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/market/list">중고마켓</a></li>
 					<li><a href="#">navi2</a></li>
-					<li><a href="#">navi3</a></li>
+					<li><a href="${pageContext.request.contextPath}/sub/submarket">Carrot Mart</a></li>
 					<li><a href="#">navi4</a></li>
 				</ul>
 			</div>
