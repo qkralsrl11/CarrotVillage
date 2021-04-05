@@ -42,7 +42,93 @@ form>input[type=text] {margin:20px 0}
 
 label {width:50px}
 
+.uploadfile {display:none}
+
+#image_area {display:flex}
+
+.card {width:200px}
+
+.card-img-top {width:200px; height:200px}
+
+.cancel {width:30px; position:relative; top:-13px; left:145px; opacity:0}
+
+.cancel:hover {cursor:pointer}
+
 </style>
+<script>
+$(document).ready(function() {
+	var img_count = 0;
+	var file_input_count = 0;
+	
+	//이미지 미리보기
+	function show_img(e) {
+		var files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+
+		if(filesArr.length + img_count <= 10) {
+			index = 0;
+			filesArr.forEach(function(f) {
+				if(f.type.match('image.*')) {
+					let num = index;
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						output = 
+							  '<div class=card>'
+							+	'<img class="card-img-top" src=' + e.target.result + ' alt=' + file_input_count+'-'+ num + '>'
+							+	'<div class="card-img-overlay">'
+							+		'<img class=cancel src="${pageContext.request.contextPath}/resources/image/kdh_cancel.png"'
+							+	'</div>'
+							+ '</div>';
+						$('#image_area').append(output);
+					}
+					reader.readAsDataURL(f);
+					img_count++;
+					index++;
+					$('#img_count').html(img_count + ' / 10');
+				}
+			});
+			console.log($('.uploadfile')[1]);
+		} else {
+			alert('이미지 업로드 최대 개수는 10개 입니다.');
+		}
+	}
+	
+	$('form').on('change', '.uploadfile', show_img);
+	
+	$('#image_area').on('mouseenter', '.card-img-overlay', function() {
+		$(this).children().css('opacity', '1');
+	});
+	$('#image_area').on('mouseleave', '.card-img-overlay', function() {
+		$(this).children().css('opacity', '0');
+	});
+	
+ 	$('#image_area').on('click', '.cancel', function() {
+		var index = $(this).parent().prev().attr('alt').split('-');
+		$(this).parent().parent().remove();
+	});
+	
+	$('#add_img').click(function(event) {
+		event.preventDefault();
+		if(img_count < 10) {
+			if($('.uploadfile').last().val() != '') {
+				$('#image_area').before('<input type=file class=uploadfile name=uploadfile multiple>');				
+				file_input_count++;
+			}
+			$('.uploadfile').last().trigger('click');			
+		} else {
+			alert('이미지 업로드 최대 개수는 10개 입니다.');
+		}
+	});
+	
+ 	$('form').submit(function(event) {
+		event.preventDefault();
+		if($('.uploadfile').last().val() == '') {
+			$('.uploadfile').last().remove();
+		}
+		this.submit();
+	}); 
+});
+</script>
 </head>
 <body>
 <div id="wrap">
@@ -69,9 +155,8 @@ label {width:50px}
 				<button>변경</button><br>
 				<label for=content>내용</label>
 				<textarea id=content name=content></textarea><br>
-				<input type=file id=uploadfile name=uploadfile>
-				<div id=image_area>이미지 영역</div>
-				<input type=hidden name=image>
+				<button id=add_img>이미지 추가</button><span id=img_count>0 / 10</span>
+				<div id=image_area></div>
 				<div>
 					<input type=submit value=등록>
 					<input type=reset value=취소>				

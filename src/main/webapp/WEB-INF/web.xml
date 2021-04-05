@@ -6,7 +6,9 @@
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-value>/WEB-INF/spring/root-context.xml
+	    /WEB-INF/spring/security-context.xml
+	    </param-value>
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -33,6 +35,29 @@
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!--  mulltipart/form-data csrf 적용하기 위한 필터 -->
+	<filter>
+	      <display-name>springMultipartFilter</display-name>
+	      <filter-name>springMultipartFilter</filter-name>
+	      <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+	  </filter>
+	  <filter-mapping>
+	      <filter-name>springMultipartFilter</filter-name>
+	      <url-pattern>/*</url-pattern>
+	  </filter-mapping>
+	  
+	<!-- 스프링 필터의 위치는 한글 인코딩 필터 뒤에 배치합니다. -->
+	
+	<!-- spring security --> 
+	<filter> 
+	   <filter-name>springSecurityFilterChain</filter-name> 
+	   <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
+	  </filter> 
+	  <filter-mapping> 
+	    <filter-name>springSecurityFilterChain</filter-name> 
+	    <url-pattern>/*</url-pattern> 
+	  </filter-mapping>
 
 	<!-- Processes application requests -->
 	<servlet>
