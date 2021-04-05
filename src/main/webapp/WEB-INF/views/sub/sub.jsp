@@ -6,8 +6,7 @@
 <title>당 근 빌 리 지</title>
 <link href="${pageContext.request.contextPath}/resources/css/header.css"
 	rel="stylesheet" type="text/css">
-<link
-	href="${pageContext.request.contextPath}/resources/css/submain.css"
+	<link href="${pageContext.request.contextPath}/resources/css/submain.css"
 	rel="stylesheet" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -68,48 +67,60 @@
 			<hr>
 			<div class="mar_content">
 				<ul>
-					<li><a href="/myhome/sub/detail" id="thumbnail"><img
+					<li><a href="#" id="thumbnail"><img
 							src="<%=request.getContextPath()%>\resources\image\pjh_sum.JPG">
-							지훈네 반찬가게</a></li>
-					<li><a href="/myhome/sub/detail" id="thumbnail"><img
+							지훈네 반찬가게</a>
+					</li>
+					<li><a href="#" id="thumbnail"><img
 							src="<%=request.getContextPath()%>\resources\image\pjh_sum.JPG">
-							지훈네 반찬가게</a></li>
-					<li><a href="/myhome/sub/detail" id="thumbnail"><img
+							지훈네 반찬가게</a>
+					</li>
+					<li><a href="#" id="thumbnail"><img
 							src="<%=request.getContextPath()%>\resources\image\pjh_sum.JPG">
-							지훈네 반찬가게</a></li>
-					<li><a href="/myhome/sub/detail" id="thumbnail"><img
+							지훈네 반찬가게</a>
+					</li>
+					<li><a href="#" id="thumbnail"><img
 							src="<%=request.getContextPath()%>\resources\image\pjh_sum.JPG">
-							지훈네 반찬가게</a></li>
+							지훈네 반찬가게</a>
+					</li>
 
 				</ul>
-				<ul>
-					<li><a href="/myhome/sub/detail" id="thumbnail"><img
+						<ul>
+					<li><a href="#" id="thumbnail"><img
 							src="<%=request.getContextPath()%>\resources\image\pjh_sum.JPG">
-							지훈네 반찬가게</a></li>
-					<li><a href="/myhome/sub/detail" id="thumbnail"><img
+							지훈네 반찬가게</a>
+					</li>
+					<li><a href="#" id="thumbnail"><img
 							src="<%=request.getContextPath()%>\resources\image\pjh_sum.JPG">
-							지훈네 반찬가게</a></li>
-					<li><a href="/myhome/sub/detail" id="thumbnail"><img
+							지훈네 반찬가게</a>
+					</li>
+					<li><a href="#" id="thumbnail"><img
 							src="<%=request.getContextPath()%>\resources\image\pjh_sum.JPG">
-							지훈네 반찬가게</a></li>
-					<li><a href="/myhome/sub/detail" id="thumbnail"><img
+							지훈네 반찬가게</a>
+					</li>
+					<li><a href="#" id="thumbnail"><img
 							src="<%=request.getContextPath()%>\resources\image\pjh_sum.JPG">
-							지훈네 반찬가게</a></li>
+							지훈네 반찬가게</a>
+					</li>
 
 				</ul>
-				<ul>
-					<li><a href="/myhome/sub/detail" id="thumbnail"><img
+						<ul>
+					<li><a href="#" id="thumbnail"><img
 							src="<%=request.getContextPath()%>\resources\image\pjh_sum.JPG">
-							지훈네 반찬가게</a></li>
-					<li><a href="/myhome/sub/detail" id="thumbnail"><img
+							지훈네 반찬가게</a>
+					</li>
+					<li><a href="#" id="thumbnail"><img
 							src="<%=request.getContextPath()%>\resources\image\pjh_sum.JPG">
-							지훈네 반찬가게</a></li>
-					<li><a href="/myhome/sub/detail" id="thumbnail"><img
+							지훈네 반찬가게</a>
+					</li>
+					<li><a href="#" id="thumbnail"><img
 							src="<%=request.getContextPath()%>\resources\image\pjh_sum.JPG">
-							지훈네 반찬가게</a></li>
-					<li><a href="/myhome/sub/detail" id="thumbnail"><img
+							지훈네 반찬가게</a>
+					</li>
+					<li><a href="#" id="thumbnail"><img
 							src="<%=request.getContextPath()%>\resources\image\pjh_sum.JPG">
-							지훈네 반찬가게</a></li>
+							지훈네 반찬가게</a>
+					</li>
 
 				</ul>
 

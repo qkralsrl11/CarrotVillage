@@ -24,5 +24,9 @@ public class Sub_Controller {
 		return "sub/loce";
 		
 	}
-
+	@GetMapping("/detail")
+	public String detail() {
+		logger.info("detail도달");
+		return "sub/sub_detail";
+	}
 }
