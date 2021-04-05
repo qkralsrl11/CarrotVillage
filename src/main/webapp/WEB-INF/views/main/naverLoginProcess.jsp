@@ -34,13 +34,11 @@
 						"name" : name,
 						"profile_image" : profile_image
 					   },
-				success : function(result) {
-					alert(result);
+				success : function() {
+					window.opener.location.reload();
+					window.close();
 				}
 			});
-			
-			opener.parent.location.reload();
-			window.close();
 		}
 		
 </script>

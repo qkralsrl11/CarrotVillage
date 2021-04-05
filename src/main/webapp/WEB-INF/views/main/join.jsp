@@ -11,6 +11,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
+*:focus {
+	outline:none;
+}
 body {
 	margin:0;
 }
@@ -57,10 +60,6 @@ div {
 	width:100%;
 	height:42px;
 }
-.join:focus {
-	outline:none;
-}
-
 #join_content input::placeholder {
 	color:silver;
 	font-weight:400;
@@ -79,6 +78,7 @@ div {
 #email_auth {
 	display:flex;
 	flex-direction:row;
+	justify-content: space-between;
 	border:none;
 	height:65px;
 }
@@ -91,57 +91,109 @@ div {
     border-radius: 20px;
     font-size: 13px;
     font-weight: 600;
+
 }
-#email_msg {
+
+#email_auth > div:nth-child(2) {
+	margin-top: 11px;
+    width: 180px;
+    height: 35px;
+    border: 1px solid silver;
+    border-radius: 20px;
+    font-size: 13px;
+    text-indent: 26px;
+    flex-direction:row;
+}
+
+#email_auth_key_input {
+	border: none;
+    margin-left: 14px;
+    font-size: 20px;
+    text-align: center;
+}
+#email_auth_timer {
+	width:40px;
+}
+#email_auth_timer div {
+	margin-top:6px;
+}
+
+.join_msg {
 	font-size:12px;
+}
+button:focus {
+	outline:none;
 }
 </style>
 <script>
+
 $(function() {
 	var checkName = false;
 	var checkEmail = false;
+	var checkPassword = false;
+	var checkPasswordChk = false;
 	
-	$('form').submit(function() {
+	$('form').on("submit", function() {
+		
+		if ($("#email_auth_key_input").val() != authKey) {
+			alert("이메일 인증번호가 일치하지 않습니다.");
+			return false;
+		}
 
 		if(!checkName) {
+			alert("이름을 형식에 맞게 입력해 주세요.");
 			$("#name").focus();
 			return false;
 		}
-	
 		if(!checkEmail) {
+			alert("이메일을 형식에 맞게 입력해 주세요.");
 			$("#email").focus();
 			return false;
 		}
-	});
-	
-	$("#email").on('keyup', function() {
-		$("#email_msg").empty();
-		var pattern = /^\w+@\w+[.]\w{3}$/;
-		var email = $("#email").val()
-		if(!pattern.test(email)) {
-			$("#email_msg").css('color', 'red').html("이메일형식이 맞지 않습니다.");
-			$("#email_msg").prev().css('border-color', 'red');
-			checkEmail = false;
-		} else {
-			$("#email_msg").prev().css('border-color', 'silver');
-			$("#email_msg").empty();
-			checkEmail = true;
+		if(!checkPassword) {
+			alert("비밀번호를 형식에 맞게 입력해 주세요.");
+			$("#password").focus();
+			return false;
 		}
+		if(!checkPasswordChk) {
+			$("#password_chk").focus();
+			return false;
+		}
+		
+		alert("회원가입이 완료되었습니다.");
+		
 	});
 	
+	//이름
 	$("#name").on('keyup', function() {
-		checkName = true;
 		$("#name_msg").empty();
-		var pattern = /^\w{1,20}$/;
-		var id = $("input:eq(0)").val();
-		if(!pattern.test(id)) {
-			$("#message").css('color', 'red').html("영문자 숫자_로 5~12자 가능합니다.");
-			checkid = false;
-			return;
+		var pattern = /^[0-9가-힣a-zA-Z]*$/;
+		var name = $("#name").val();
+	
+		if(!pattern.test(name)) {
+			$("#name_msg").css('color', '#e00000').html("특수문자는 사용할 수 없습니다.");
+			$("#name_msg").prev().css('border-color', 'red');
+			checkName = false;
+		} else {
+			
+			if (name.length < 2) {
+				$("#name_msg").css('color', '#e00000').html("2자 이상 입력하세요.");
+				$("#name_msg").prev().css('border-color', 'red');
+				checkName = false;
+			} else {
+				$("#name_msg").prev().css('border-color', 'silver');
+				$("#name_msg").empty();
+				checkName = true;
+			}
+			
 		}
-		
-		
-		$.ajax({
+		if (!name) {
+			$("#name_msg").prev().css('border-color', 'silver');
+			$("#name_msg").empty();
+			checkName = false;
+		}
+
+		/*$.ajax({
 			url : "member/idcheck",
 			data : {"id" : id},
 			success : function(result) {
@@ -154,10 +206,138 @@ $(function() {
 					checkid = false;
 				}
 			}
-		});
+		});*/
 		
 		
 	});
+	
+	//이메일
+	var email = $("#email").val();
+	
+	$("#email").on('keyup', function() {
+		$("#email_msg").empty();
+		var pattern = /^\w+@\w+[.]\w{2,3}$/;
+		email = $("#email").val();
+		if(!pattern.test(email)) {
+			$("#email_msg").css('color', '#e00000').html("이메일형식이 맞지 않습니다.");
+			$("#email_msg").prev().css('border-color', 'red');
+			checkEmail = false;
+		} else {
+			$("#email_msg").prev().css('border-color', 'silver');
+			$("#email_msg").empty();
+			checkEmail = true;
+		}
+		if (!email) {
+			$("#email_msg").prev().css('border-color', 'silver');
+			$("#email_msg").empty();
+			checkEmail = false;
+		}
+	});
+	
+	//비밀번호
+	var password = $("#password").val();
+	
+	$("#password").on('keyup', function() {
+		$("#password_msg").empty();
+		var pattern = /^[a-zA-Z0-9!@#$%^&*()?_~]{8,20}$/;
+		password = $("#password").val();
+		if(!pattern.test(password)) {
+			$("#password_msg").css('color', '#e00000').html("비밀번호는 숫자,영문,특수문자(!@#$%^&*()?_~)조합으로 8~20자리를 사용해야 합니다.");
+			$("#password_msg").prev().css('border-color', 'red');
+			checkPassword = false;
+		} else {
+			$("#password_msg").prev().css('border-color', 'silver');
+			$("#password_msg").empty();
+			checkPassword = true;
+		}
+		if (!password) {
+			$("#password_msg").prev().css('border-color', 'silver');
+			$("#password_msg").empty();
+			checkPassword = false;
+		}
+	});
+	
+	//비밀번호 확인
+	$("#password_chk").on('keyup', function() {
+		$("#password_chk_msg").empty();
+		var passwordChk = $("#password_chk").val();
+		if (password != passwordChk) {
+			$("#password_chk_msg").css('color', '#e00000').html("비밀번호가 다릅니다.");
+			$("#password_chk_msg").prev().css('border-color', 'red');
+			checkPasswordChk = false;
+		} else {
+			$("#password_chk_msg").prev().css('border-color', 'silver');
+			$("#password_chk_msg").empty();
+			checkPasswordChk = true;
+		}
+		if ($("#password_chk").val() == "") {
+			$("#password_chk_msg").prev().css('border-color', 'silver');
+			$("#password_chk_msg").empty();
+			checkPasswordChk = false;
+		}
+	});
+	
+	
+	//이메일 인증
+	var authKey = "";
+	
+	$("#email_auth_btn").click(function() {
+		if (!email) {
+			alert("이메일을 입력해 주세요.");
+			return false;
+		} else if (!checkEmail) {
+			alert("이메일을 형식에 맞게 입력해 주세요.");
+			$("#email").focus();
+			return false;
+		} else {
+			alert("이메일이 전송 되었습니다 인증번호를 확인해 주세요.");
+			
+			$.ajax({
+				type : "post",
+				url : "${pageContext.request.contextPath}/main/emailAuth",
+				data : { "email" : email },  //210번 라인
+				dataType : "json",
+				success : function(rdata) {
+					authKey = rdata.authKey;
+				}
+			});
+			
+			//타이머
+			var time = 180;
+			var min = 0;
+			var sec = 0;
+			var x = setInterval(function() {
+				min = parseInt(time/60);
+				sec = time % 60;
+				$("#email_auth_timer div").text(min + ":" + twoDigits(sec));
+				time--;
+				
+				var color = time > 60 ? "black" : "red";
+				$("#email_auth_timer div").css("color", color);
+				
+				if (time < 0) {
+					clearInterval(x);
+					$("#email_auth_timer div").text("0:00");
+					authKey = "";
+					
+					if (!authKey) {
+						alert("이메일 인증 시간이 만료되었습니다.");
+					}
+				}
+				
+				$("#email_auth_btn").click(function() {
+					clearInterval(x);
+				});
+				
+			}, 1000);
+			
+		}
+		
+	});
+	
+	function twoDigits(n) {
+		return (n < 10 ? '0' : '') + n;
+	}
 	
 });
 </script>
@@ -191,7 +371,11 @@ $(function() {
 					
 					<div class="join_item_wrap">
 						<div id="email_auth">
-							<div><button id="email_auth_btn">이메일 인증하기</button></div><div></div>
+							<div><input type="button" id="email_auth_btn" value="이메일 인증하기"></div>
+							<div>
+								<div style="width:65%"><input type="text" id="email_auth_key_input"></div>
+								<div id="email_auth_timer"><div></div></div>
+							</div>
 						</div>
 					</div>
 					
@@ -199,14 +383,14 @@ $(function() {
 						<div>
 							<input type="password" placeholder="비밀번호" name="password" id="password" class="join">
 						</div>
-						<div class="join_msg"></div>
+						<div class="join_msg" id="password_msg"></div>
 					</div>
 					
 					<div class="join_item_wrap">
 						<div>
 							<input type="password" placeholder="확인" name="password_chk" id="password_chk" class="join">
 						</div>
-						<div class="join_msg"></div>
+						<div class="join_msg" id="password_chk_msg"></div>
 					</div>
 					
 				</div>

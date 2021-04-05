@@ -43,8 +43,8 @@
 
 		$("#login_btn").click(function(e) {
 			e.preventDefault();
-			var nWidth = "490";
-			var nHeight = "630";			  
+			var nWidth = 490;
+			var nHeight = 630;			  
 
 			var xPos = (document.body.clientWidth / 2) - (nWidth / 2); 
 			xPos += window.screenLeft;	 //듀얼 모니터
@@ -63,14 +63,25 @@
 			}
 		});
 		
+		//임시 로그아웃
+		$("#user_btn").click(function() {
+			$.ajax({
+				url : "${pageContext.request.contextPath}/main/logout",
+				success : function(rdata) {
+					alert(rdata.logout_name + "님 로그아웃 되었습니다.");
+					window.location.reload()
+				}
+			});
+		});
+		
 	});
 </script>
 
 <a id="top_btn"> 
-	<img src="${pageContext.request.contextPath}/resources/image/arrowup.png">
+	<img src="${pageContext.request.contextPath}/resources/image/nhj_arrowup.png">
 </a>
 <a id="msg_btn"> 
-	<img src="${pageContext.request.contextPath}/resources/image/msg5.png">
+	<img src="${pageContext.request.contextPath}/resources/image/nhj_msg.png">
 </a>
 
 <div id="msg_wrap">
@@ -81,7 +92,7 @@
 		<div id="top_bar">
 
 			<div class="left">
-				<img src="${pageContext.request.contextPath}/resources/image/pin2.png">
+				<img src="${pageContext.request.contextPath}/resources/image/nhj_pin2.png">
 			</div>
 
 			<div class="right">

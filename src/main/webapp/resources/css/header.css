@@ -140,13 +140,15 @@
 }
 
 #nav_all {
-	display: none;
-    width: 1200px;
-    margin: 0 auto;
+	width: 1200px;
+	margin:0 auto;
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: max-height .8s;
 }
 
 #nav_all.show {
-  display:block;
+  max-height:500px;
 }
 
 #nav_all a {
@@ -306,7 +308,7 @@
 	background:orange;
 	bottom:75px;
 	right:20px;
-	border-radius:5px;
+	border-radius:20px;
 	transition: background-color .3s, 
     			opacity .5s, visibility .5s;
     opacity: 0;
@@ -320,10 +322,11 @@
 }
 
 #top_btn img {
-	width:30px;
-	height:30px;
-	margin:5px;
+	width:25px;
+	height:25px;
+	margin:7px auto;
 	display:block;
+	opacity:.7;
 }
 
 #msg_btn {
@@ -335,16 +338,17 @@
 	background:orange;
 	bottom:20px;
 	right:20px;
-	border-radius:5px;
+	border-radius:20px;
     opacity: .7;
     cursor:pointer;
 }
 
 #msg_btn img {
-	width:30px;
-	height:30px;
-	margin:5px;
+	width:25px;
+	height:25px;
+	margin:8px auto;
 	display:block;
+	opacity:.7;
 }
 
 #login_btn {
