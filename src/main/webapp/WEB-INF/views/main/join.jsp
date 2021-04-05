@@ -57,7 +57,7 @@ div {
 
 .join {
 	border:none;
-	width:100%;
+	width:80%;
 	height:42px;
 }
 #join_content input::placeholder {
@@ -124,6 +124,16 @@ div {
 button:focus {
 	outline:none;
 }
+.x {
+	display:block;width:16px;height:16px;
+	border-radius:10px;margin:14px 0;cursor:pointer;
+	background:url(${pageContext.request.contextPath}/resources/image/nhj_x.png) no-repeat;
+	background-size:16px 16px;
+	visibility:hidden;
+}
+#name_count {
+	height: 15px;font-size: 13px;color: silver;margin:10px 0 20px 20px;
+}
 </style>
 <script>
 
@@ -139,7 +149,7 @@ $(function() {
 			alert("이메일 인증번호가 일치하지 않습니다.");
 			return false;
 		}
-
+		
 		if(!checkName) {
 			alert("이름을 형식에 맞게 입력해 주세요.");
 			$("#name").focus();
@@ -167,7 +177,7 @@ $(function() {
 	//이름
 	$("#name").on('keyup', function() {
 		$("#name_msg").empty();
-		var pattern = /^[0-9가-힣a-zA-Z]*$/;
+		var pattern = /^[0-9가-힣a-zA-Z]+$/;
 		var name = $("#name").val();
 	
 		if(!pattern.test(name)) {
@@ -190,25 +200,52 @@ $(function() {
 		if (!name) {
 			$("#name_msg").prev().css('border-color', 'silver');
 			$("#name_msg").empty();
+			$("name_count").empty();
 			checkName = false;
+			$("#name_count").css("visibility", "hidden");
+			$("#namex").css("visibility", "hidden");
+		} else {
+			$("#name_count").css("visibility", "visible");
+			$("#namex").css("visibility", "visible");
+			if (name.length >= 15) {
+				$("#name_count").css("color", "red");
+			} else {
+				$("#name_count").css("color", "silver");
+			}
 		}
+		
+		var length = name.length;
+		if (length > 15) {
+			length = 15;
+			$(this).val(name.substring(0, length));
+		}
+		$("#name_count").text(length + "/15");
 
-		/*$.ajax({
-			url : "member/idcheck",
-			data : {"id" : id},
-			success : function(result) {
-				console.log(result);
-				if(result == -1) {
-					$("#message").css('color', 'green').html("사용 가능한 아이디 입니다.");
+		$.ajax({
+			type : "get",
+			url : "${pageContext.request.contextPath}/main/joinCheck",
+			data : { "field" : "name", "value" : name },
+			success : function(rdata) {
+				if(rdata.result == '-1') {
+					$("#name_msg").prev().css('border-color', 'silver');
 					checkid = true;
 				} else {
-					$("#message").css('color', 'blue').html("사용중인 아이디 입니다.");
+					$("#name_msg").prev().css('border-color', 'red');
+					$("#name_msg").css('color', 'red').html("사용중인 아이디 입니다.");
 					checkid = false;
 				}
 			}
-		});*/
+		});
 		
 		
+	});
+	
+	$("#namex").click(function() {
+		$("#name").val("");
+		$("#name_msg").empty();
+		$("#name_msg").prev().css('border-color', 'silver');
+		$("#name_count").css("visibility", "hidden");
+		$(this).css("visibility", "hidden");
 	});
 	
 	//이메일
@@ -231,7 +268,34 @@ $(function() {
 			$("#email_msg").prev().css('border-color', 'silver');
 			$("#email_msg").empty();
 			checkEmail = false;
+			$("#emailx").css("visibility", "hidden");
+		} else {
+			$("#emailx").css("visibility", "visible");
 		}
+		
+		$.ajax({
+			type : "get",
+			url : "${pageContext.request.contextPath}/main/joinCheck",
+			data : { "field" : "email", "value" : email },
+			success : function(rdata) {
+				if(rdata.result == '-1') {
+					$("#email_msg").prev().css('border-color', 'silver');
+					checkid = true;
+				} else {
+					$("#email_msg").prev().css('border-color', 'red');
+					$("#email_msg").css('color', 'red').html("사용중인 이메일 입니다.");
+					checkid = false;
+				}
+			}
+		});
+		
+	});
+	
+	$("#emailx").click(function() {
+		$("#email").val("");
+		$("#email_msg").empty();
+		$("#email_msg").prev().css('border-color', 'silver');
+		$(this).css("visibility", "hidden");
 	});
 	
 	//비밀번호
@@ -254,11 +318,31 @@ $(function() {
 			$("#password_msg").prev().css('border-color', 'silver');
 			$("#password_msg").empty();
 			checkPassword = false;
+			$("#passwordx").css("visibility", "hidden");
+		} else {
+			$("#passwordx").css("visibility", "visible");
 		}
+
+	});
+	
+	//비밀번호 확인 x버튼
+	var passChkx = function passChkx() {
+		$("#password_chk").val("");
+		$("#password_chk_msg").empty();
+		$("#password_chk_msg").prev().css('border-color', 'silver');
+		$("#password_chkx").css("visibility", "hidden");
+	}
+	
+	$("#passwordx").click(function() {
+		$("#password").val("");
+		$("#password_msg").empty();
+		$("#password_msg").prev().css('border-color', 'silver');
+		$(this).css("visibility", "hidden");
+		passChkx();
 	});
 	
 	//비밀번호 확인
-	$("#password_chk").on('keyup', function() {
+	$("#password_chk").on('keyup', function () {
 		$("#password_chk_msg").empty();
 		var passwordChk = $("#password_chk").val();
 		if (password != passwordChk) {
@@ -270,13 +354,17 @@ $(function() {
 			$("#password_chk_msg").empty();
 			checkPasswordChk = true;
 		}
-		if ($("#password_chk").val() == "") {
+		if (!passwordChk) {
 			$("#password_chk_msg").prev().css('border-color', 'silver');
 			$("#password_chk_msg").empty();
 			checkPasswordChk = false;
+			$("#password_chkx").css("visibility", "hidden");
+		} else {
+			$("#password_chkx").css("visibility", "visible");
 		}
 	});
 	
+	$("#password_chkx").click(passChkx);
 	
 	//이메일 인증
 	var authKey = "";
@@ -293,7 +381,7 @@ $(function() {
 			alert("이메일이 전송 되었습니다 인증번호를 확인해 주세요.");
 			
 			$.ajax({
-				type : "post",
+				type : "get",
 				url : "${pageContext.request.contextPath}/main/emailAuth",
 				data : { "email" : email },  //210번 라인
 				dataType : "json",
@@ -356,15 +444,22 @@ $(function() {
 				<div>
 				
 					<div class="join_item_wrap">
-						<div>
+						<div style="flex-direction:row;">
 							<input type="text" placeholder="이름" name="name" id="name" class="join">
+							<div style="flex-direction:row;">
+								<span id="namex" class="x"></span>
+								<span id="name_count"></span>
+							</div>
 						</div>
 						<div class="join_msg" id="name_msg"></div>
 					</div>
 					
 					<div class="join_item_wrap">
-						<div>
+						<div style="flex-direction:row;">
 							<input type="text" placeholder="이메일" name="email" id="email" class="join">
+							<div style="margin-left:70px;">
+								<span id="emailx" class="x"></span>
+							</div>
 						</div>
 						<div class="join_msg" id="email_msg"></div>
 					</div>
@@ -380,15 +475,21 @@ $(function() {
 					</div>
 					
 					<div class="join_item_wrap">
-						<div>
+						<div style="flex-direction:row;">
 							<input type="password" placeholder="비밀번호" name="password" id="password" class="join">
+							<div style="margin-left:70px;">
+								<span id="passwordx" class="x"></span>
+							</div>
 						</div>
 						<div class="join_msg" id="password_msg"></div>
 					</div>
 					
 					<div class="join_item_wrap">
-						<div>
+						<div style="flex-direction:row;">
 							<input type="password" placeholder="확인" name="password_chk" id="password_chk" class="join">
+							<div style="margin-left:70px;">
+								<span id="password_chkx" class="x"></span>
+							</div>
 						</div>
 						<div class="join_msg" id="password_chk_msg"></div>
 					</div>
@@ -403,6 +504,7 @@ $(function() {
 
 
 		</div>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	</form>
 </body>
 </html>

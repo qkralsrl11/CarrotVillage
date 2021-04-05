@@ -6,7 +6,7 @@
     z-index: 999;
     height: 24px;
     width: 100%;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.9);
 }
 
 #top_bar {
@@ -18,7 +18,7 @@
 #nav_wrap.fixed {
 	top:24px;
 	position:fixed;
-	z-index:999;
+	z-index:10;
 }
 
 #top_bar .left {
@@ -33,10 +33,12 @@
 }
 
 #top_bar .right {
-    float:right;
-    height:auto;
-    font-size:13px;
-    margin:3.5px 0;
+    float: right;
+    height: auto;
+    font-size: 13px;
+    margin: 3px 0;
+    display: flex;
+    flex-direction: column;
 }
 
 #top_bar .right ul {
@@ -46,9 +48,10 @@
 
 #top_bar .right li {
 	display: inline-block;
-	float:left;
-	position: relative;
-	margin-left:10px;
+    float: right;
+    position: relative;
+    margin-left: 10px;
+    margin-right: 5px;
 }
 
 #top_bar .right a {
@@ -71,7 +74,7 @@
     top: 24px;
     border-bottom: 1px solid #dcdcdc;
     border-top: 1px solid #dcdcdc;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.9);
 }
 
 #logo_bar {
@@ -96,7 +99,7 @@
     z-index: 10;
     width: 100%;
     box-shadow: 0 6px 10px -6px rgb(0 0 0 / 20%);
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.9);
     top: 114px;
 }
 
@@ -373,4 +376,29 @@
 	height:400px;
 	visibility:visible;
 	opacity:1;
+}
+
+#user_info_tab {
+	width: 320px;
+    height: 150px;
+    background:#f5f5f5;
+    float: right;
+    z-index:99;
+    margin-top:3px;
+    flex-direction:row;
+    display:none;
+    box-shadow: 1px 2px 7px -3px #656565;
+}
+#user_info_tab.show {
+	display:flex;
+}
+#user_profile_img {
+	width: 75px;
+    height: 75px;
+    border-radius: 38px;
+    background: pink;
+    margin: 20px auto;
+}
+#user_title {
+	width: 100%;margin: 15px 0px 0px 0;height: 25px;
 }
