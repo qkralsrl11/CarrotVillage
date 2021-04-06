@@ -55,12 +55,22 @@ button {
 }
 #login_content > div:nth-child(2) {
 	margin:12px 0;
+	height: 40px;
 }
+<<<<<<< HEAD
 #login_content > div:nth-child(2) > label {
 	font-family: 'Roboto Condensed', sans-serif;
 	margin-left:7px;
 	color:#4a4a4a;
 }
+=======
+#stay_signed_in {
+	width:15px;
+	height:15px;
+	margin-bottom: 3px;
+}
+
+>>>>>>> branch 'master' of https://github.com/qkralsrl11/CarrotVillage.git
 #login_content > div:nth-child(3) {
 	margin:20px 0;
 }
@@ -74,6 +84,9 @@ button {
 	font-size:18px;
 	font-weight:400;
 	font-family: 'Roboto Condensed', sans-serif;
+}
+#login_content > div:nth-child(3) > button:focus {
+	outline:none;
 }
 #login_content > div:nth-child(4) {
 	width:100%;
@@ -116,6 +129,73 @@ button {
 #login_other button > img {
 	float:left;
 }
+<<<<<<< HEAD
+=======
+#naver_id_login img:nth-child(2) {
+	display:none;
+}
+#naver_id_login {
+	height: 42px;
+	width:100%;
+	margin-bottom:5px;
+}
+
+#naver_id_login_anchor {
+	border: solid 1px #a0a0a0;
+	background:white;
+    display: flex;
+    flex-direction:row;
+    width:360px;
+   	height: 40px;
+    border-radius: 3px;
+}
+#naver_id_login_anchor:hover {
+	cursor:pointer;
+	text-decoration:none;
+}
+#naver_id_login_anchor p {
+	font-size:18px;
+	margin: 5px 45px;
+	color:#505050;
+}
+#naver_logo {
+	display:block;
+	width:30px;
+	height:30px;
+	margin:5px;
+}
+input[type="checkbox"] {
+	display: none;
+}
+
+input[type="checkbox"]+label {
+	display: inline-block;
+	width: 100%;
+	font-size: 13px;
+	cursor: pointer;
+	height: 20px;
+	margin: 0 0 0 7px;
+    color: #4a4a4a;
+}
+
+input[type="checkbox"]+label span {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	margin: 1px 10px 3px 0;
+	vertical-align: middle;
+	background:url(${pageContext.request.contextPath}/resources/image/nhj_unchecked.png) no-repeat;
+	background-size:18px 18px;
+	cursor: pointer;
+	border:none;
+}
+
+input[type="checkbox"]:checked+label span {
+	background:url(${pageContext.request.contextPath}/resources/image/nhj_checked.png) no-repeat;
+	border: none;
+	background-size:18px 18px;
+}
+>>>>>>> branch 'master' of https://github.com/qkralsrl11/CarrotVillage.git
 </style>
 </head>
 <body>
@@ -139,7 +219,12 @@ button {
 					</div>
 				</div>
 				<div><!-- 2 -->
+<<<<<<< HEAD
 					<input type="checkbox" id="id_remember" name="id_remember"><label for="id_remember">아이디 저장</label>
+=======
+					<input type="checkbox" id="login_chk" name="login_chk">
+					<label for="login_chk"><span></span>로그인 유지하기  </label>
+>>>>>>> branch 'master' of https://github.com/qkralsrl11/CarrotVillage.git
 				</div>
 				<div><!-- 3 -->
 					<button type="submit">로그인</button>
@@ -164,10 +249,18 @@ button {
 					naver_id_login.setState(state);
 					//naver_id_login.setPopup();
 					naver_id_login.init_naver_id_login();
+<<<<<<< HEAD
+=======
+					
+					$(function() {
+						$("#naver_id_login_anchor").html("<img src='${pageContext.request.contextPath}/resources/image/nhj_naver_logo.PNG' id='naver_logo'>"
+														+"<p>네이버 아이디로 로그인</p>");
+					});
+>>>>>>> branch 'master' of https://github.com/qkralsrl11/CarrotVillage.git
 				</script>
 				
 				
-				<button><img src="${pageContext.request.contextPath}/resources/image/kakao_logo.png" width="30px" width="30px">카카오 아이디로 로그인</button>
+				<button><img src="${pageContext.request.contextPath}/resources/image/nhj_kakao_logo.png" width="30px" width="30px">카카오 아이디로 로그인</button>
 				
 			</div>
 
